@@ -1,0 +1,14 @@
+.rikhshaw-img{
+    width: 130px;
+    height: auto;
+}
+.rikshatable-heading {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+.rikshatable-heading >h1{
+    font-size: 28px;
+    border-bottom: 2px solid #5BA505;
+    width: 33%;
+}

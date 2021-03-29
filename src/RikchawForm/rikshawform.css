@@ -1,0 +1,80 @@
+.rikshawform{
+    margin: 50px 200px;
+    padding: 20px;
+    box-shadow: 0px 0px 15px -4px #000000;
+    border-radius: 5px;
+
+}
+.rikshaw-heading{
+    display: flex;
+    justify-content: space-evenly;
+}
+.rickshaw-formgroup{
+    margin-bottom: 0!important;
+    margin-top: 1rem;
+}
+.rikshaw-heading >h1{
+    font-size: 28px;
+    border-bottom: 1px solid green;
+}
+.check-detail{
+    background-color: #5BA505!important;
+}
+.label-heading{
+    font-weight: bold;
+
+}
+.form-div{
+    width: 80%;
+}
+.rikshaw-submit{
+    background-color: #5BA505!important ;
+    width: 50%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+@media only screen and (max-width:400px) {
+    .rikshawform{
+        margin: 22px 0;
+        padding: 20px;  
+        box-shadow: 0px 0px 15px -4px #000000;
+        border-radius: 5px;
+    
+    }
+    .form-div{
+        width: 100%;
+    }
+
+}
+@media only screen and (min-width:400px) and (max-width:575px){
+    .rikshawform{
+        margin: 50px 20px;
+        padding: 20px;
+        box-shadow: 0px 0px 15px -4px #000000;
+        border-radius: 5px;
+    }
+    .form-div{
+        width: 90%;
+    }
+
+}
+@media only screen and (min-width:575px) and (max-width:768px){
+    .rikshawform{
+        margin: 50px 20px;
+        padding: 20px;
+        box-shadow: 0px 0px 15px -4px #000000;
+        border-radius: 5px;
+    
+    }
+
+}
+@media only screen and (min-width:768px) and (max-width:992px){
+    .rikshawform{
+        margin: 50px 100px;
+        padding: 20px;
+        box-shadow: 0px 0px 15px -4px #000000;
+        border-radius: 5px;
+    
+    }
+
+}
