@@ -10,3 +10,18 @@
 .logo-img{
   width: 130px;
 }
+
+
+/* Temprery classis */
+
+.theme-color{
+ color: #5BA505!important;
+}
+.bg-theme{
+  background-color: #5BA505!important;
+}
+.bg-theme:hover{ background-color: #71be19!important;}
+a:hover{text-decoration: none!important;}
+.text-whites{color: white!important;}
+
+table tr:nth-child(even) {background-color: #eee;}

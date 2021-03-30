@@ -1,0 +1,13 @@
+.Login-form{
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    background-color: #eee;
+}
+.ui.header>.image:not(.icon), .ui.header>img {
+    display: inline-block;
+    margin-top: .14285714em;
+    width: 4.5em!important;
+    height: auto;
+    vertical-align: middle;
+}

@@ -1,7 +1,7 @@
 .rikshawform{
     margin: 50px 200px;
     padding: 20px;
-    box-shadow: 0px 0px 15px -4px #000000;
+   
     border-radius: 5px;
 
 }
@@ -22,7 +22,15 @@
 }
 .label-heading{
     font-weight: bold;
+    color: #444;
+    
 
+}
+.dashbord-Form{
+    padding-top: 18px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #444;
 }
 .form-div{
     width: 80%;
@@ -37,7 +45,7 @@
     .rikshawform{
         margin: 22px 0;
         padding: 20px;  
-        box-shadow: 0px 0px 15px -4px #000000;
+       
         border-radius: 5px;
     
     }
@@ -50,7 +58,7 @@
     .rikshawform{
         margin: 50px 20px;
         padding: 20px;
-        box-shadow: 0px 0px 15px -4px #000000;
+       
         border-radius: 5px;
     }
     .form-div{
@@ -62,7 +70,7 @@
     .rikshawform{
         margin: 50px 20px;
         padding: 20px;
-        box-shadow: 0px 0px 15px -4px #000000;
+       
         border-radius: 5px;
     
     }
@@ -72,7 +80,7 @@
     .rikshawform{
         margin: 50px 100px;
         padding: 20px;
-        box-shadow: 0px 0px 15px -4px #000000;
+       
         border-radius: 5px;
     
     }
