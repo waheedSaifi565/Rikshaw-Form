@@ -36,7 +36,7 @@ export class Searchdata extends Component {
     axios
       .get("http://localhost:1141/Api/Searchdata/showdata")
       .then((response) => {
-        console.log(response.data);
+        console.log("something we pass",response.data);
         this.setState({
           driversData: response.data,
         });
@@ -51,7 +51,7 @@ export class Searchdata extends Component {
     e.preventDefault();
 
     axios
-      .post("http://localhost:1141/Api/Searchdata/search", data)
+      .post("http://localhost:1141/Api/Searchdata/showdata", data)
       .then((response) => {
         console.log(response.data);
 

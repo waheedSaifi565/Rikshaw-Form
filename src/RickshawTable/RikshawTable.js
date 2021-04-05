@@ -77,7 +77,7 @@ console.log("dreiversssssssssss", driversData)
                             </FormGroup>
                         </div>
                         <div className="col-sm-7">
-<Date  {...driversData}/>
+<Date  props={driversData}/>
                         </div>
                         <div className="col-sm-2">
                             <Link to="/dashboard">
