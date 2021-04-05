@@ -1,8 +1,13 @@
 .Login-form{
-    display: grid;
-    place-items: center;
     height: 100vh;
     background-color: #eee;
+   
+}
+.Login{
+    position: absolute;
+    left: 50%;
+top: 35%;
+transform: translate(-50%, -50%);
 }
 .ui.header>.image:not(.icon), .ui.header>img {
     display: inline-block;
@@ -10,4 +15,24 @@
     width: 4.5em!important;
     height: auto;
     vertical-align: middle;
+}
+.Grid-column{
+   width: 450px;
+}
+.invlid{
+    color: red;
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+    margin-bottom: -20px;
+}
+
+@media screen and (max-width: 565px) {
+    .Login{
+        position: absolute;
+        left: 5%;
+    top: 5%;
+    transform: translate(0%, 0%);
+    }
+   
 }

@@ -11,6 +11,13 @@ export default class MenuExampleSecondaryPointing extends Component {
       console.log("links", props)
     const { activeItem } = this.state
 
+    const logout = () => {
+      localStorage.removeItem("user");
+      localStorage.clear();
+      window.localStorage.clear();
+      window.location.href = "/";
+    };
+
     return (
       <div>
     <Menu pointing color="green">
@@ -33,7 +40,8 @@ export default class MenuExampleSecondaryPointing extends Component {
           <Menu.Item
             name='Logout'
             active={activeItem === 'Logout'}
-            onClick={this.handleItemClick}
+            onClick={logout}
+        
           /></Link>
           </Menu.Menu>
         </Menu>

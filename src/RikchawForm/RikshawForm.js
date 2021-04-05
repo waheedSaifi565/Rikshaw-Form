@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import {toast} from 'react-toastify';
-import Store from '../Store/store';
 import 'react-toastify/dist/ReactToastify.css';
 import {  Segment,Table,Button, Icon } from 'semantic-ui-react'
 import { Form, FormGroup, Label, Input, FormText} from 'reactstrap';
@@ -9,6 +8,7 @@ import './rikshawform.css';
 import axios from 'axios';
 import {URI_API} from "../Constants";
 import useLocalStorage from "../LocalStorageHook";
+import { formValueSelector } from 'redux-form';
 
 toast.configure()
 
@@ -16,7 +16,7 @@ class RikshawForm extends Component {
 
     constructor(props) {
         super(props);
-
+        this.wrapper = React.createRef();
         this.state = {
             selectedFile: null,
             handleResponse: null,
@@ -26,6 +26,7 @@ class RikshawForm extends Component {
             errors: {},
             errorMessage: {},
             name: '',
+            area: "",
             phone_number: '',
             number_plate: '',
             amount: '',
@@ -64,7 +65,6 @@ class RikshawForm extends Component {
 
         this.setState({errors: errors});
         return formIsValid;
-
     }
 
     selectedFileHandle = (event) => {
@@ -93,8 +93,9 @@ class RikshawForm extends Component {
         };
         reader.readAsDataURL(file);
     }
-
+ 
     contactSubmit(e) {
+        e.preventDefault();
         const token = window.localStorage.getItem('token');
         if (this.handleValidation()) {
             let formData = {
@@ -103,6 +104,7 @@ class RikshawForm extends Component {
                 number_plate: this.state.fields["rikshawnumber"],
                 amount: this.state.fields["amount"],
                 cnic: this.state.fields["cnic"],
+                area: this.state.fields["area"],
                 image: this.state.fields["image"],
             }
 
@@ -111,7 +113,7 @@ class RikshawForm extends Component {
             }
             axios.post(URI_API +'rickshaw', formData,config)
                 .then(response => {
-                    console.log(response);
+                    console.log("data send",response);
                 })
                 .catch((err) => {
                     this.setState({errorMessage: err.response.data.errors});
@@ -129,7 +131,16 @@ class RikshawForm extends Component {
         this.setState({fields});
     }
 
-    render() {
+    componentDidMount() {
+        const apiUrl = 'https://rikshaw.ecodexpert.com/api/area';
+        fetch(apiUrl)
+          .then((response) => response.json())
+          .then((data) => console.log('This is your data', data));
+      }
+    
+
+ 
+      render() {
 
         const redirectToReferrer = this.state.redirectToReferrer;
         if (redirectToReferrer) {
@@ -139,7 +150,7 @@ class RikshawForm extends Component {
         const {invalidImage, errors} = this.state;
 
         return (
-            <div>
+            <div  ref={this.wrapper}>
                 <div className="rikshawform">
                     <div >
                         <div className="row justify-content-center">
@@ -160,7 +171,7 @@ class RikshawForm extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <Form className="form-div p-3">
+                            <Form  className="form-div p-3">
                             <Segment stacked className="p-4" color="green">
                                 <div className="row">
                                     <div className="col-lg-6 col-md-6">
@@ -216,33 +227,46 @@ class RikshawForm extends Component {
                                         <span style={{color: "red"}}> {this.state.errorMessage.cnic[0]} </span>}
                                     </div>
                                     <div className="col-lg-6 col-md-6">
+                                    
                                         <FormGroup className="rickshaw-formgroup">
-                                            <Label for="cnic" className="label-heading">CNIC Number</Label>
-                                            <Input type="number" onChange={this.handleChange.bind(this, "cnic")}
-                                                   value={this.state.fields["cnic"]} name="cnic" id="cnic"
-                                                   autoComplete="off"/>
+                                            <Label for="area"  className="label-heading">Add Area</Label>
+                                          
+ 
+                                            <select placeholder='Select your Area'  type="text" onChange={this.handleChange.bind(this, "area")}
+                                                   value={this.state.fields["area"]} name="area" id="area"
+                                                   autoComplete="off" >
+                                                   <option>hello</option>
+                                                   <option>hello</option>
+{/* {
+    area.map = (e) => {
+<option>{e.area}</option>
+    }
+} */}
+</select>
+                                          
                                         </FormGroup>
-                                        <span style={{color: "red"}}>{errors["cnic"]}</span>
-                                        {this.state.errorMessage.cnic &&
-                                        <span style={{color: "red"}}> {this.state.errorMessage.cnic[0]} </span>}
+                                        <span style={{color: "red"}}>{errors["area"]}</span>
+                                        {this.state.errorMessage.area &&
+                                        <span style={{color: "red"}}> {this.state.errorMessage.area[0]} </span>}
                                     </div>
                                     <div className="col-lg-6 col-md-6">
                                         <FormGroup className="rickshaw-formgroup">
-                                            <Label for="image" className="label-heading">Picture Of Flex with Driver
-                                                After Install</Label>
-                                            <Input type="file" onChange={this.selectedFileHandle.bind(this)}
+                                            <Label for="image" className="label-heading">Picture Of Flex with Driver After Install</Label>
+                                            <input type="file" onChange={this.selectedFileHandle.bind(this)}
                                                    accept=".jpg, .jpeg, .png" name="image" id="image"/>
+                                                         {/* <input type="file"  /> */}
                                             <span style={{color: "red"}}>{errors['image']}</span>
                                             {this.state.errorMessage.image &&
                                             <span style={{color: "red"}}> {this.state.errorMessage.image[0]} </span>}
                                         </FormGroup>
                                     </div>
                                     <div className="col-lg-12 col-md-12 text-center">
-                                        <Button className="bg-theme text-whites w-50"
+                                        <Button className="bg-theme text-whites w-50 mt-4"
                                                 onClick={this.contactSubmit.bind(this)}>Submit</Button>
                                     </div>
                                 </div>
-                                </Segment></Form>
+                                </Segment>
+                                </Form>
                         </div>
                     </div>
                 </div>
