@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import Store from "../Store/store";
 import './rikshawtable.css';
 import { Table,Button, Icon } from 'semantic-ui-react'
-
+import Date from './Date';
 import {Link} from 'react-router-dom';
 import { Form, FormGroup, Label, Input} from 'reactstrap';
 import axios from 'axios';
@@ -61,7 +61,7 @@ const RikshawTable = (props) => {
             })
         toast.success('Data Submitted successfully', {autoClose: 3000})
     }
-console.log("dreiversssssssssss", )
+console.log("dreiversssssssssss", driversData)
     return (
         <div className="container-fluid">
             <div className="justify-content-center">
@@ -70,15 +70,18 @@ console.log("dreiversssssssssss", )
                         <h4 className="heading-Form">Rikshaw Driver Registration Details</h4>
             
                     <div className="row">
-                        <div className="col-lg-6 col-md-6 mb-4">
+                        <div className="col-lg-3 col-md-3 col-sm-3  mb-4">
                             <FormGroup className="rickshaw-formgroup">
                                 <Label className="label-heading" for="name">Search</Label>
                                 <Input type="text" onChange={e => getData(e.target.value)}/>
                             </FormGroup>
                         </div>
+                        <div className="col-sm-7">
+<Date  {...driversData}/>
+                        </div>
                         <div className="col-sm-2">
                             <Link to="/dashboard">
-                            <Button animated className="bg-theme text-whites">
+                            <Button animated className="bg-theme text-whites mt-5 w-100 margin-btn">
       <Button.Content visible>Back to Form</Button.Content>
       <Button.Content hidden>
         <Icon name='arrow left' />
@@ -124,9 +127,8 @@ console.log("dreiversssssssssss", )
                                             }}>Add</Button>
                                 </td>
                                 <td>
-                                <Link to="/dashboard/details">
-                                    <Button key={driverData.id}
-                                            data-id={driverData.id}>Detail</Button>
+                                <Link to={"/dashboard/details?id="+driverData.id}>
+                                    <Button>Details</Button>
                                             </Link>
                                 </td>
                             </tr>

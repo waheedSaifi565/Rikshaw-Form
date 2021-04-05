@@ -15,11 +15,42 @@
 .heading-Form{
     text-align: center;
 text-transform: capitalize;
-width: 30%;
+width: 40%;
 margin: auto;
 padding-bottom: 3px;
 padding-top: 12px;
 color: #555;
 font-size: 22px;
 font-weight: 700;
+}
+.lable-margin{
+    margin-top: 13px;
+}
+.margin-btn{
+    margin-top: 42px;
+}
+
+@media screen and (max-width: 776px){
+    .heading-Form{
+        text-align: center;
+    text-transform: capitalize;
+    width: 100%;
+    margin: auto;
+    padding-bottom: 3px;
+    padding-top: 12px;
+    color: #555;
+    font-size: 22px;
+    font-weight: 700;
+    }
+    .lable-margin{
+        margin-top: 13px;
+        margin-right: 12px;
+    }
+    .margin-btn{
+        margin-top: 12px;
+        width: 40%;
+    }
+    .width{
+        width: 100%;
+    }
 }

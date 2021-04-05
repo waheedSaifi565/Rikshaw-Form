@@ -4,6 +4,7 @@ import axios from "axios";
 import Moment from 'react-moment';
 
 function Index(props) {
+  console.log("whats",props)
   const [driversData, setDriversData] = useState([]);
   const [driveData, setDriveData] = useState([]);
 
