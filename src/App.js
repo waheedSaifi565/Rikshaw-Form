@@ -1,9 +1,6 @@
-// import RikshawForm from './RikchawForm/RikshawForm';
-import RikshawForm from './RikchawForm/RikshawForm';
-import logo from './Logo/unclefixer-logo.png';
+
 import { BrowserRouter as Router, Route, Switch,Link } from 'react-router-dom';
 import './App.css';
-import RikshawTable from "./RickshawTable/RikshawTable";
 import Login from "./Auth/Login";
 import 'semantic-ui-css/semantic.min.css'
 import useLocalStorage from "./LocalStorageHook";

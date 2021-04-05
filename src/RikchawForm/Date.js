@@ -110,11 +110,8 @@ export class Searchdata extends Component {
           <thead className="thead-dark">
             <tr>
               <th scope="col">Id</th>
-
               <th scope="col">Name</th>
-
               <th scope="col">City</th>
-
               <th scope="col">JoiningDate</th>
             </tr>
           </thead>
@@ -124,11 +121,8 @@ export class Searchdata extends Component {
               return (
                 <tr key={index}>
                   <th scope="row">{p.Id}</th>
-
                   <td>{p.Name}</td>
-
                   <td>{p.City}</td>
-
                   <td>{p.JoiningDate}</td>
                 </tr>
               );

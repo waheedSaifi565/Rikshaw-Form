@@ -13,11 +13,13 @@ import useLocalStorage from "../LocalStorageHook";
 import {URI_API} from "../Constants";
 
 toast.configure()
+
 const RikshawTable = (props) => {
 
     const [driversData, setDriversData] = useState([])
     const [rickshaw_id, Setrickshaw_id] = useState(0)
     const [show, setShow] = useState(false);
+
     const handleClose = () => setShow(false);
     let handleShow = (id) => {
         setShow(true);
@@ -46,6 +48,7 @@ const RikshawTable = (props) => {
     };
 
     const onSubmit = data => {
+        handleClose()
         axios.post('https://rikshaw.ecodexpert.com/api/rickshaw-transaction', {
             rickshaw_id: rickshaw_id,
             amount: data.amount
@@ -58,7 +61,7 @@ const RikshawTable = (props) => {
             })
         toast.success('Data Submitted successfully', {autoClose: 3000})
     }
-
+console.log("dreiversssssssssss", )
     return (
         <div className="container-fluid">
             <div className="justify-content-center">
@@ -123,7 +126,8 @@ const RikshawTable = (props) => {
                                 <td>
                                 <Link to="/dashboard/details">
                                     <Button key={driverData.id}
-                                            data-id={driverData.id}>Detail</Button></Link>
+                                            data-id={driverData.id}>Detail</Button>
+                                            </Link>
                                 </td>
                             </tr>
                         })
@@ -142,14 +146,14 @@ const RikshawTable = (props) => {
                             <Form className="form-div" onSubmit={handleSubmit(onSubmit)}>
                                 <input type="hidden" name="rickshaw_id"/>
                                 <div className="row">
-                                    <div className="col-lg-12 col-md-12">
+                                    <div className="col-lg-12 col-md-12 m-auto">
                                         <input className="form-control" type="number" ref={register({required: true})}
                                                name="amount"/>
                                         <span style={{color: "red"}}>{errors.amount && "Enter amount in numbers"}</span>
                                     </div>
                                     <div className="col-lg-12 mt-4 col-md-12 text-right">
-                                        <Button variant="secondary" onClick={handleClose}>Close</Button>
-                                        <Button type="submit" className="ml-4 check-detail text-whites">Save</Button>
+                                        {/* <Button variant="secondary" onClick={handleClose}>Close</Button> */}
+                                        <Button type="submit" className="ml-4 check-detail text-whites" >Save</Button>
                                     </div>
                                 </div>
                             </Form>
