@@ -3,15 +3,29 @@ import {  Table } from "reactstrap";
 import axios from "axios";
 import './style.css'
 import Moment from 'react-moment';
+import { useLocation, useParams } from "react-router";
+import Details from './NewTabel';
 
-function Index(props) {
+
+const URL = 'https://rikshaw.ecodexpert.com/api/rickshaw/delete'
+
+ const Index  = (props) => {
   const [driversData, setDriversData] = useState([]);
   const [driveData, setDriveData] = useState([]);
+  let { id } = useParams();
+
+   const removeData = (id) => {
+
+     axios.delete(`${URL}/${id}`).then(res => {
+       const del = driveData.filter(driveData => id !== driveData.id)
+       setDriversData(del)
+     })
+   }
 
   useEffect(() => {
     axios
       .get(
-        "https://rikshaw.ecodexpert.com/api/rickshaw-transaction?id=" + props.id
+        "https://rikshaw.ecodexpert.com/api/rickshaw-transaction?id=" +id
       )
       .then((response) => {
         setDriversData(response.data.getRickshawDriversData.transaction);
@@ -23,11 +37,13 @@ function Index(props) {
       });
   }, []);
 let totalAmount = 0;
+
   return (
     <div className="table-driver">
       <div className="container">
         <div className="driver_detail">
           <h2 className="driver_heading">Driver Full details</h2>
+          <Details/>
           <div className="box_drivers">
             <div className="drivers">
               <h1>Driver Name</h1>
@@ -54,7 +70,6 @@ let totalAmount = 0;
             <tr className="padding-left">
               <th className="text-center">Transaction</th>
               <th className="text-center">Date</th>
-              <th className="text-center">Area</th>
             </tr>
           </thead>
 
@@ -63,12 +78,13 @@ let totalAmount = 0;
               totalAmount = totalAmount + driverData.amount_paid;
               return (
                 <tr>
-                  <td className="text-center"> {driverData.amount_paid} </td>
-                 
+                  <td className="text-center"> {driverData.amount_paid}
+                    <button className='button' onClick={() => removeData(id)}>Delete</button>
+
+                    {/*<button class="ui red button">delete</button>*/}
+                  </td>
                   <td className="text-center" >  <Moment format='MMMM Do YYYY, h:mm:ss a'>{driverData.created_at}</Moment></td>
-                 
                 </tr>
-             
               );
             })}
             <div className="total-amount"><h4>Total:  {totalAmount}</h4></div>
