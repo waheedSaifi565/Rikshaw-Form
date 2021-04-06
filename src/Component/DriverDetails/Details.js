@@ -1,15 +1,47 @@
 import React, { useState, useEffect } from "react";
-import {  Table } from "reactstrap";
+import {  Table ,Button,Form} from "reactstrap";
 import axios from "axios";
 import './style.css'
+import Modal from 'react-bootstrap/Modal';
+import {useForm} from "react-hook-form";
+import {toast} from 'react-toastify';
+
 import Moment from 'react-moment';
 import { useLocation, useParams } from "react-router";
+toast.configure()
 
  const Index  = (props) => {
   const [driversData, setDriversData] = useState([]);
   const [driveData, setDriveData] = useState([]);
+
+  const [rickshaw_id, Setrickshaw_id] = useState(0)
+    const [show, setShow] = useState(false);
   let { id } = useParams();
 
+  const {register, handleSubmit, errors} = useForm();
+
+  const handleClose = () => setShow(false);
+
+  let handleShow = (id) => {
+    console.log("id",id)
+    setShow(true);
+    setDriveData(id)
+}
+const onSubmit = data => {
+  
+  handleClose()
+  axios.put('https://rikshaw.ecodexpert.com/api/rickshaw/rickshaw-transaction', {
+      driversData: driversData,
+      amount: data.amount
+  })
+      .then(response => {
+          console.log(response);
+      })
+      .catch(error => {
+          console.log(error);
+      })
+  toast.success('Data Submitted successfully', {autoClose: 3000})
+}
   useEffect(() => {
     axios
       .get(
@@ -78,8 +110,12 @@ let totalAmount = 0;
               return (
                 <tr>
                   <td className="text-center"> {driverData.amount_paid}
-
-                  <button onClick={() => edit(driverData.id)}>Edit</button>
+                  
+                  <Button  key={driverData.id}
+                                            data-id={driverData.id}
+                                            onClick={() => {
+                                                handleShow(driverData.id)
+                                            }}>Edit</Button>
                   </td>
                   <td className="text-center" >  <Moment format='MMMM Do YYYY, h:mm:ss a'>{driverData.created_at}</Moment></td> 
                 </tr>
@@ -88,6 +124,32 @@ let totalAmount = 0;
             <div className="total-amount"><h4>Total:  {totalAmount}</h4></div>
           </tbody>
         </Table>
+        <Modal
+                        show={show}
+                        onHide={handleClose}
+                        backdrop="static"
+                        keyboard={false}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Make Transaction</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form className="form-div" onSubmit={handleSubmit(onSubmit)}>
+                                <input type="hidden" name="rickshaw_id"/>
+                                <div className="row">
+                                    <div className="col-lg-12 col-md-12 m-auto">
+                                        <input className="form-control" type="number" ref={register({required: true})}
+                                               name="amount" />
+                                        <span style={{color: "red"}}>{errors.amount && "Enter amount in numbers"}</span>
+                                    </div>
+                                    <div className="col-lg-12 mt-4 col-md-12 text-right">
+                                        {/* <Button variant="secondary" onClick={handleClose}>Close</Button> */}
+                                        <Button type="submit" className="ml-4 check-detail text-whites" >Save</Button>
+                                    </div>
+                                </div>
+                            </Form>
+                        </Modal.Body>
+                    </Modal>
+        
       </div>
     </div>
   );

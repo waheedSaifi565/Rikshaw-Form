@@ -320,6 +320,7 @@ class RikshawForm extends Component {
                           name="area_id"
                           onChange={this.handleChange.bind(this, "area_id")}
                         >
+                        <option value="1">--Choose Area--</option>
                         {
                             this.state.area.map((e) =>{
                                 return ( <option value={e.id}>{e.name}</option>);
@@ -348,7 +349,7 @@ class RikshawForm extends Component {
                           name="image"
                           id="image"
                         />
-                        {/* <input type="file"  /> */}
+                   
                         <span style={{ color: "red" }}>{errors["image"]}</span>
                         {this.state.errorMessage.image && (
                           <span style={{ color: "red" }}>
