@@ -18,12 +18,26 @@ import { useLocation, useParams } from "react-router";
       .then((response) => {
         setDriversData(response.data.getRickshawDriversData.transaction);
         setDriveData(response.data.getRickshawDriversData);
-        console.log("something", response.data.getRickshawDriversData);
+        // console.log( response.data.getRickshawDriversData);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
+
+  const  edit = (edit) => { 
+    axios
+      .put(
+        "https://rikshaw.ecodexpert.com/api/rickshaw/rickshaw-transaction"
+      )
+      .then((response) => {
+        console.log("something", response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+console.log("some",edit)
+}
 let totalAmount = 0;
 
   return (
@@ -64,7 +78,9 @@ let totalAmount = 0;
               return (
                 <tr>
                   <td className="text-center"> {driverData.amount_paid}
-                  <button class="ui red button">delete</button> </td>
+
+                  <button onClick={() => edit(driverData.id)}>Edit</button>
+                  </td>
                   <td className="text-center" >  <Moment format='MMMM Do YYYY, h:mm:ss a'>{driverData.created_at}</Moment></td> 
                 </tr>
               );
