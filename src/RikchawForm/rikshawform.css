@@ -58,7 +58,6 @@
     .rikshawform{
         margin: 50px 20px;
         padding: 20px;
-       
         border-radius: 5px;
     }
     .form-div{
@@ -70,19 +69,22 @@
     .rikshawform{
         margin: 50px 20px;
         padding: 20px;
-       
         border-radius: 5px;
-    
     }
-
 }
 @media only screen and (min-width:768px) and (max-width:992px){
     .rikshawform{
         margin: 50px 100px;
         padding: 20px;
-       
         border-radius: 5px;
-    
     }
 
+}
+
+
+.selector{
+    width: 100%;
+    border: 1px solid #c9c7c7!important;
+    padding: 6px;
+    border-radius: 4px;
 }

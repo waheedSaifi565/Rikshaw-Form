@@ -77,7 +77,7 @@ console.log("dreiversssssssssss", driversData)
                             </FormGroup>
                         </div>
                         <div className="col-sm-7">
-<Date  props={driversData}/>
+<Date setDriversData={setDriversData}/>
                         </div>
                         <div className="col-sm-2">
                             <Link to="/dashboard">
@@ -127,7 +127,7 @@ console.log("dreiversssssssssss", driversData)
                                             }}>Add</Button>
                                 </td>
                                 <td>
-                                <Link to={"/dashboard/details?id="+driverData.id}>
+                                <Link to={"/dashboard/details/"+driverData.id}>
                                     <Button>Details</Button>
                                             </Link>
                                 </td>

@@ -13,7 +13,7 @@ const MainRoutes = () =>{
           <Route exact path="/dashboard" component={RikshawForm} />
           <Route exact path="/dashboard/detail" component={RikshawTable} />
           <Route exact path="/dashboard/area" component={Area} />
-          <Route exact path="/dashboard/details" component={Details} />
+          <Route exact path="/dashboard/details/:id" component={Details} />
       </Switch>
   </>  );
 }

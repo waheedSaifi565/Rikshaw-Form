@@ -23,6 +23,7 @@ export class Searchdata extends Component {
   Changedate = (e) => {
     this.setState({
       to: e,
+     
     });
   };
 
@@ -33,14 +34,12 @@ export class Searchdata extends Component {
   };
 
   componentDidMount() {
-    axios
-      .get("http://localhost:1141/Api/Searchdata/showdata")
-      .then((response) => {
-        console.log("something we pass",response.data);
-        this.setState({
-          driversData: response.data,
-        });
-      });
+    // axios
+      // .get("'https://rikshaw.ecodexpert.com/api/Searchdata/showdata")
+      // .post("https://rikshaw.ecodexpert.com/api/searchByDate")
+      // .then((response) => {
+       
+      // });
   }
 
   onsubmit = (e) => {
@@ -51,13 +50,11 @@ export class Searchdata extends Component {
     e.preventDefault();
 
     axios
-      .post("http://localhost:1141/Api/Searchdata/showdata", data)
+      .post("https://rikshaw.ecodexpert.com/api/searchByDate", data)
       .then((response) => {
-        console.log(response.data);
+        console.log("sdflkadslkfdsalf;j",response.data);
 
-        this.setState({
-          driversData: response.data,
-        });
+        this.props.setDriversData( response.data.searchByDateRange)
       });
   };
 
@@ -68,22 +65,8 @@ export class Searchdata extends Component {
 
         <form onSubmit={this.onsubmit}>
           <div className="row">
-         
-
             <div className="col-sm-4 form-group">
             <Label className="label-heading lable-margin" for="name">To</Label>
-
-              <DatePicker
-                className="form-control width"
-                selected={this.state.to}
-                placeholderText="Select Date"
-                showPopperArrow={false}
-                onChange={this.Changedate}
-              />
-            </div>
-
-            <div className="col-sm-4 form-group">
-            <Label className="label-heading lable-margin" for="name">From</Label>
               <DatePicker
                 className="form-control width"
                 selected={this.state.from}
@@ -92,7 +75,18 @@ export class Searchdata extends Component {
                 onChange={this.from}
               />
             </div>
+            <div className="col-sm-4 form-group">
+            <Label className="label-heading lable-margin" for="name">From</Label>
 
+              <DatePicker
+                className="form-control width"
+                selected={this.state.to}
+                placeholderText="Select Date"
+                showPopperArrow={false}
+                // onChange={this.Changedate}
+                onChange={e => this.Changedate(e)}
+              />
+            </div>
             <div className="col-sm-2 form-group">
               <button type="submit" className="btn bg-theme text-whites  margin-btn">
                 Search
